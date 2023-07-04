@@ -1,100 +1,89 @@
+import { post } from "./API.js";
 const contenedorTareas = document.querySelector("#tareaInput");
-const boton = document.querySelector("#btn-agregar");
+
 let listaTarea = document.querySelector("#listaTarea");
 let letra = document.querySelector("#letra");
 let check = document.querySelector("#check");
 let contadorT = 0;
 let mensaje = document.getElementById("mensaje");
 
-
-function agregarTarea() { 
-  
+function agregarTarea() {
   let tarea = contenedorTareas.value;
+
   if (tarea !== "") {
-  let tareaLi = document.createElement("li");
+    let tareaLi = document.createElement("li");
 
-  let texto = document.createElement("p");
-  texto.id = "arreglartexto";
+    let texto = document.createElement("p");
+    texto.id = "arreglartexto";
 
-  let inputC = document.createElement("input");
-  inputC.id = "arreglarcheck";
-  inputC.setAttribute("type", "checkbox");
+    let inputC = document.createElement("input");
+    inputC.id = "arreglarcheck";
+    inputC.setAttribute("type", "checkbox");
 
-  let eliminar = document.createElement("button");
-  eliminar.id = "arreglarboton";
-  eliminar.textContent = "Eliminar";
- 
-  texto.innerHTML = tarea;
-  tareaLi.appendChild(texto);
-  tareaLi.appendChild(inputC);
-  tareaLi.appendChild(eliminar);
+    let eliminar = document.createElement("button");
+    eliminar.id = "arreglarboton";
+    eliminar.textContent = "Eliminar";
 
-  let tabla = document.getElementById("listaTarea");
-  tabla.appendChild(tareaLi);
+    texto.innerHTML = tarea;
+    post({tarea});
+    tareaLi.appendChild(texto);
+    tareaLi.appendChild(inputC);
+    tareaLi.appendChild(eliminar);
 
- mensaje.style.display="none"
+    let tabla = document.getElementById("listaTarea");
+    tabla.appendChild(tareaLi);
 
+    mensaje.style.display = "none";
 
-  eliminar.addEventListener("click", (e) => {
-    let listaT = document.getElementById("listaTarea");
-     
+    eliminar.addEventListener("click", (e) => {
+      let listaT = document.getElementById("listaTarea");
 
+      const i = e.target.parentElement;
+      listaT.removeChild(i);
 
+      if (inputC.checked) {
+        contadorT--;
+        letra.innerHTML = contadorT;
+      }
 
+      let cargar = document.querySelectorAll("li");
+      console.log(cargar);
 
+      if (!cargar.length != 0) {
+        mensaje.style.display = "block";
+      }
+    });
 
-    const i = e.target.parentElement;
-    listaT.removeChild(i);
+    mensaje.addEventListener("string", function () {
+      if (condition) {
+      }
+    });
 
-    if (inputC.checked) {
-      contadorT--;
-      letra.innerHTML = contadorT;
-    }
+    contenedorTareas.value = "";
 
-
-    let cargar=document.querySelectorAll("li")
-    console.log(cargar)
-
-    if (!cargar.length!=0) {
-
-
-    
-      mensaje.style.display="block"
-    }
-
-
-
-  });
-
-  mensaje.addEventListener("string", function () {
-    if (condition) {
-    }
-  });
-
-  contenedorTareas.value = "";
-
-  inputC.addEventListener("click", function () {
-    if (inputC.checked) {
-      contadorT = contadorT + 1;
-      letra.innerHTML = contadorT;
-    } else {
-      contadorT = contadorT - 1;
-      letra.innerHTML = contadorT;
-    }
-  });
-  
+    inputC.addEventListener("click", function () {
+      if (inputC.checked) {
+        contadorT = contadorT + 1;
+        letra.innerHTML = contadorT;
+      } else {
+        contadorT = contadorT - 1;
+        letra.innerHTML = contadorT;
+      }
+    });
   } else {
     alert("Ingrese una tarea válida");
   }
+
+  tarea = "";
+ 
 }
 
-boton.addEventListener("click", agregarTarea);
-
-contenedorTareas.addEventListener("keypress", function (event) {
-  if (event.key === "Enter") {
-    event.preventDefault();
-    agregarTarea();
-  }
-});
+// contenedorTareas.addEventListener("keypress", function (event) {
+//   if (event.key === "Enter") {
+//     event.preventDefault();
+//     agregarTarea();
+//   }
+// });
 // Inserte el código aquí
 
+export { agregarTarea };
