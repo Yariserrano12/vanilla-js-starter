@@ -1,15 +1,75 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-	<title>Ejemplo básico</title>
-	<meta charset="UTF-8" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style/to do.css">
+    <center>
+        <title>TAREAS POR HACER</title>
+    </center>
 </head>
 
 <body>
-	<h1>La aplicación esta corriendo!</h1>
+    <center>
+        <h1><b>TAREAS POR HACER </b></h1>
+    </center>
+    <br>
 
-	<script src="./index.js" type="module"></script>
+    <div class="container">
+        <div class="containerPrincipal">
+            <div class="encabezado">
+                <form action="formulario" action="">
+                    <input type="text" id="tareaInput" placeholder="Agrega tu tarea"> <br>
+                    <input type="button" class="boton" id="btn-agregar" value="Agregar">
+
+                </form>
+            </div>
+            <br>
+
+
+            <div class="cuadrado">
+                <center>
+                    <p id="mensaje"> No hay tareas pendientes</p>
+                </center>
+                <div class="encabezado">
+
+                    <ul id="listaTarea">
+
+
+
+                    </ul>
+                </div>
+
+
+
+
+
+
+
+            </div>
+
+        </div>
+
+        <div class="Tareas">
+            <h5 id="circulo"></h5>
+            <span id="valor"></span>
+            <p id="letra">0</p>
+        </div>
+        <div>
+            <h3> Tareas Completadas</h3>
+
+        </div>
+    </div>
+
+
+
+
+
+
+
+    <script src="JS/index.js"> </script>
+
 </body>
 
 </html>
