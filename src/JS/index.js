@@ -1,4 +1,4 @@
-import { post } from "./API.js";
+import { post, get, deleteTask } from "./API.js";
 const contenedorTareas = document.querySelector("#tareaInput");
 
 let listaTarea = document.querySelector("#listaTarea");
@@ -7,7 +7,7 @@ let check = document.querySelector("#check");
 let contadorT = 0;
 let mensaje = document.getElementById("mensaje");
 
-function agregarTarea() {
+async function agregarTarea() {
   let tarea = contenedorTareas.value;
 
   if (tarea !== "") {
@@ -19,13 +19,24 @@ function agregarTarea() {
     let inputC = document.createElement("input");
     inputC.id = "arreglarcheck";
     inputC.setAttribute("type", "checkbox");
+    inputC.checked = false;
 
     let eliminar = document.createElement("button");
     eliminar.id = "arreglarboton";
     eliminar.textContent = "Eliminar";
 
     texto.innerHTML = tarea;
-    post({tarea});
+
+    var task = {
+      task: tarea,
+      checked: false,
+    };
+
+    let tareaPost = await post(task);
+    console.log(tareaPost);
+    // let tareaDevuelta = await get(tareaPost);
+
+    tareaLi.id = tareaPost.id;
     tareaLi.appendChild(texto);
     tareaLi.appendChild(inputC);
     tareaLi.appendChild(eliminar);
@@ -40,6 +51,8 @@ function agregarTarea() {
 
       const i = e.target.parentElement;
       listaT.removeChild(i);
+      console.log("lista: ", i.id);
+      deleteTask(i.id);
 
       if (inputC.checked) {
         contadorT--;
@@ -47,7 +60,6 @@ function agregarTarea() {
       }
 
       let cargar = document.querySelectorAll("li");
-      console.log(cargar);
 
       if (!cargar.length != 0) {
         mensaje.style.display = "block";
@@ -75,7 +87,6 @@ function agregarTarea() {
   }
 
   tarea = "";
- 
 }
 
 // contenedorTareas.addEventListener("keypress", function (event) {
