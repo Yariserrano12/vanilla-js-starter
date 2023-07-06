@@ -61,14 +61,20 @@ async function deleteTask(id) {
   return deleteTask;
 }
 
-async function putTask(id) {
+async function updateTask(id, task) {
   const response = await fetch("http://localhost:4000/api/task/" + id, {
     method: "PUT",
+    headers: {
+      Accept : "application/json",
+      "Content-Type":"application/json",
+    },
+    body: JSON.stringify(task)
   });
-  const deleteTask = await response.json();
-  return deleteTask;
-}
+  const updatedTask = await response.json();
+  return updatedTask;
+} 
 
 
 
-export { post, deleteTask, getApi, putTask };
+
+export { post, deleteTask, getApi, updateTask };

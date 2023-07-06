@@ -1,5 +1,5 @@
 //IMPORTS
-import { post, getApi, deleteTask } from "./API.js";
+import { post, getApi, deleteTask, updateTask } from "./API.js";
 //IMPORTS
 
 //VARIABLES
@@ -14,14 +14,22 @@ let mensaje = document.getElementById("mensaje");
 
 async function cargarTareas() {
   let tareas = await getApi();
+  var contadorCarga = 0;
 
   tareas.forEach((tarea) => {
-    crearElementos(tarea.id, tarea.task);
+    crearElementos(tarea.id, tarea.task, tarea.checked);
   });
+
+  for (let index = 0; index < tareas.length; index++) {
+    if (tareas[index].checked == true) {
+      contadorCarga++;
+    }
+  }
+  letra.textContent = contadorCarga;
 }
 document.addEventListener("DOMContentLoaded", cargarTareas);
 
-function crearElementos(id, tarea) {
+function crearElementos(id, tarea, checked) {
   let eliminar = document.createElement("button");
   eliminar.setAttribute("class", "btn btn-danger");
   eliminar.id = "arreglarboton";
@@ -30,7 +38,7 @@ function crearElementos(id, tarea) {
   let inputC = document.createElement("input");
   inputC.id = "arreglarcheck";
   inputC.setAttribute("type", "checkbox");
-  inputC.checked = false;
+  inputC.checked = checked;
 
   var tareaLi = document.createElement("li");
   let texto = document.createElement("p");
@@ -46,12 +54,12 @@ function crearElementos(id, tarea) {
 
   let tabla = document.getElementById("listaTarea");
   tabla.appendChild(tareaLi);
-  eliminar.addEventListener("click", (e) => {
+
+  eliminar.addEventListener("click", async (e) => {
     let listaT = document.getElementById("listaTarea");
 
     const i = e.target.parentElement;
     listaT.removeChild(i);
-    console.log("lista: ", i.id);
     deleteTask(i.id);
 
     if (inputC.checked) {
@@ -70,8 +78,14 @@ function crearElementos(id, tarea) {
     if (condition) {
     }
   });
-  
-  inputC.addEventListener("click", function () {
+
+  inputC.addEventListener("change", function () {
+    let checked = {
+      checked: inputC.checked,
+    };
+
+    updateTask(id, checked);
+
     if (inputC.checked) {
       contadorT = contadorT + 1;
       letra.innerHTML = contadorT;
@@ -93,7 +107,7 @@ async function agregarTarea() {
 
     let tareaPost = await post(task);
 
-    crearElementos(tareaPost.id, tareaPost.task);
+    crearElementos(tareaPost.id, tareaPost.task, tareaPost.checked);
 
     contenedorTareas.value = "";
   } else {
