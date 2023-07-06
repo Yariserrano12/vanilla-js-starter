@@ -36,14 +36,22 @@ async function post(task) {
 //     .then((response) => console.log(JSON.stringify(response)));
 // }
 
-async function get() {
-  const response = await fetch(
-    "http://localhost:4000/api/task",
-    configuration("GET")
-  );
-  const tasks = await response.json();
-  return tasks;
+async function getApi() {
+  const response = await fetch("http://localhost:4000/api/task", {
+    method: "GET",
+  });
+  const getPostApi = await response.json();
+  return getPostApi;
 }
+
+async function getById(id) {
+  const response = await fetch("http://localhost:4000/api/task" + id, {
+    method: "GET",
+  });
+  const getPostApi = await response.json();
+  return getPostApi;
+}
+
 
 async function deleteTask(id) {
   const response = await fetch("http://localhost:4000/api/task/" + id, {
@@ -53,4 +61,14 @@ async function deleteTask(id) {
   return deleteTask;
 }
 
-export { post, deleteTask, get };
+async function putTask(id) {
+  const response = await fetch("http://localhost:4000/api/task/" + id, {
+    method: "PUT",
+  });
+  const deleteTask = await response.json();
+  return deleteTask;
+}
+
+
+
+export { post, deleteTask, getApi, putTask };
