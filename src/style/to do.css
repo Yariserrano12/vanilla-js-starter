@@ -99,3 +99,11 @@ h1 {
   width: 5%;
   word-wrap: break-word;
 }
+
+.div-derecha{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+}
