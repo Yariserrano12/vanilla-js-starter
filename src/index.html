@@ -5,72 +5,64 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style/to do.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <center>
         <title>TAREAS POR HACER</title>
     </center>
 </head>
 
 <body>
-    <center>
-        <h1><b>TAREAS POR HACER </b></h1>
-    </center>
-    <br>
+    <div class="div-main">
 
-    <div class="container">
-        <div class="containerPrincipal">
-            <div class="encabezado">
-                    
-                    <input type="text" id="tareaInput" placeholder="Agrega tu tarea"> <br>
-                    <input type="button" class="boton" id="btn-agregar" value="Agregar">
+        <center>
+            <h1><b>TAREAS POR HACER </b></h1>
+        </center>
+        <br>
 
-                
-            </div>
-            <br>
-
-
-            <div class="cuadrado">
-                <center>
-                    <p id="mensaje"> No hay tareas pendientes</p>
-                </center>
+        <div class="container">
+            <div class="containerPrincipal">
                 <div class="encabezado">
 
-                    <ul id="listaTarea">
+                    <div class="div-izquierda">
+                        <input type="text" id="tareaInput" placeholder="Agrega tu tarea"> <br>
+                        <button type="button" class="btn btn-info w-100 my-2" id="btn-agregar">Agregar</button>
+                    </div>
 
+                    <div class="div-derecha">
+                        <div>
+                            <h3> Tareas Completadas</h3>
+                        </div>
+                        <div class="Tareas">
+                            <h5 id="circulo"><span id="letra">0</span></h5>
+                        </div>
+                    </div>
 
-
-                    </ul>
                 </div>
 
+                <div class="cuadrado">
+                    <center>
+                        <p id="mensaje"> No hay tareas pendientes</p>
+                    </center>
+                    <div class="div-listas">
 
+                        <ul id="listaTarea">
 
+                        </ul>
+                    </div>
 
-
-
+                </div>
 
             </div>
-
-        </div>
-
-        <div class="Tareas">
-            <h5 id="circulo"></h5>
-            <span id="valor"></span>
-            <p id="letra">0</p>
-        </div>
-        <div>
-            <h3> Tareas Completadas</h3>
 
         </div>
     </div>
 
 
-
-
-
-
-
-    
-    <script type="module" src="./JS/module.js"></script>
-
 </body>
+<script type="module" src="./JS/module.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
 
 </html>
