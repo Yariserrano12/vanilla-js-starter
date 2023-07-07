@@ -1,5 +1,5 @@
 body {
-  background: rgb(88, 12, 12);
+  background-color: rgb(238, 206, 209) !important;
   font-family: arial, helvetica, sans-serif;
   border-color: #e4e1e1;
 }
@@ -7,7 +7,7 @@ body {
 .div-main {
   width: 60%;
   margin: auto; 
- background-color: ;
+ 
 }
 
 .containerPrincipal {
@@ -112,6 +112,7 @@ background: linear-gradient(to right, #fc6767, #ec008c); /* W3C, IE 10+/ Edge, F
   margin: 5px;
   padding: 0;
   list-style-type: none;
+  
 }
 
 #listaTarea li {
@@ -121,6 +122,7 @@ background: linear-gradient(to right, #fc6767, #ec008c); /* W3C, IE 10+/ Edge, F
   border-radius: 10px;
   margin: 5px;
   padding: 5px;
+
 }
 
 #listaTarea li p {
@@ -131,6 +133,7 @@ background: linear-gradient(to right, #fc6767, #ec008c); /* W3C, IE 10+/ Edge, F
 #listaTarea li input {
   width: 5%;
   word-wrap: break-word;
+  
 }
 
 .div-derecha{
@@ -152,4 +155,8 @@ background: linear-gradient(to right, #fc6767, #ec008c); /* W3C, IE 10+/ Edge, F
 #btn-agregar{
   background-color: #dfc9c9;
   border: #e4e1e1;
+}
+
+#contador{
+font-size: x-large;
 }
